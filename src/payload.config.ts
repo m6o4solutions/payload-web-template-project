@@ -13,6 +13,7 @@ import { Users } from "./collections/Users";
 import { Footer } from "./Footer/config";
 import { Header } from "./Header/config";
 import { plugins } from "./plugins";
+import { resend } from "@/fields/resend";
 import { defaultLexical } from "@/fields/defaultLexical";
 import { getServerSideURL } from "./utilities/getURL";
 
@@ -31,6 +32,9 @@ export default buildConfig({
 		},
 		importMap: {
 			baseDir: path.resolve(dirname),
+		},
+		meta: {
+			titleSuffix: " | M6O4 Solutions",
 		},
 		user: Users.slug,
 		livePreview: {
@@ -56,20 +60,15 @@ export default buildConfig({
 			],
 		},
 	},
-	// This config helps us configure global or default features that the other editors can inherit
-	editor: defaultLexical,
+	collections: [Pages, Posts, Media, Categories, Users],
+	cors: [getServerSideURL()].filter(Boolean),
 	db: mongooseAdapter({
 		url: process.env.DATABASE_URI || "",
 	}),
-	collections: [Pages, Posts, Media, Categories, Users],
-	cors: [getServerSideURL()].filter(Boolean),
+	// This config helps us configure global or default features that the other editors can inherit
+	editor: defaultLexical,
+	email: resend,
 	globals: [Header, Footer],
-	plugins: [...plugins],
-	secret: process.env.PAYLOAD_SECRET,
-	sharp,
-	typescript: {
-		outputFile: path.resolve(dirname, "payload-types.ts"),
-	},
 	jobs: {
 		access: {
 			run: ({ req }: { req: PayloadRequest }): boolean => {
@@ -84,5 +83,11 @@ export default buildConfig({
 			},
 		},
 		tasks: [],
+	},
+	plugins: [...plugins],
+	secret: process.env.PAYLOAD_SECRET,
+	sharp,
+	typescript: {
+		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},
 });
