@@ -1,4 +1,4 @@
-import { getClientSideURL } from '@/utilities/getURL'
+import { getClientSideURL } from "@/utilities/getURL";
 
 /**
  * Processes media resource URL to ensure proper formatting
@@ -7,14 +7,14 @@ import { getClientSideURL } from '@/utilities/getURL'
  * @returns Properly formatted URL with cache tag if provided
  */
 export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | null): string => {
-  if (!url) return ''
+	if (!url) return "";
 
-  // Check if URL already has http/https protocol
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    return cacheTag ? `${url}?${cacheTag}` : url
-  }
+	// Check if URL already has http/https protocol
+	if (url.startsWith("http://") || url.startsWith("https://")) {
+		return cacheTag ? `${url}?${cacheTag}` : url;
+	}
 
-  // Otherwise prepend client-side URL
-  const baseUrl = getClientSideURL()
-  return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`
-}
+	// Otherwise prepend client-side URL
+	const baseUrl = getClientSideURL();
+	return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`;
+};
