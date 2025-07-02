@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
-import { cn } from "@/utilities/ui";
+import React from "react";
+import Script from "next/script";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
-import React from "react";
+import { cn } from "@/utilities/ui";
 
 import { AdminBar } from "@/components/AdminBar";
 import { Footer } from "@/Footer/Component";
@@ -25,6 +26,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				<InitTheme />
 				<link href="/favicon.ico" rel="icon" sizes="32x32" />
 				<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+				<Script id="clarity-script" strategy="afterInteractive">
+					{`
+                        (function(c,l,a,r,i,t,y){
+                            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                        })(window, document, "clarity", "script", "s8ingr3l85");
+                    `}
+				</Script>
 			</head>
 			<body>
 				<Providers>
