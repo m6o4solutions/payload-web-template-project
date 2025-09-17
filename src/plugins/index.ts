@@ -4,12 +4,15 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
+
+import { Media } from '@/collections/Media'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -88,6 +91,15 @@ export const plugins: Plugin[] = [
       fields: ({ defaultFields }) => {
         return [...defaultFields, ...searchFields]
       },
+    },
+  }),
+  uploadthingStorage({
+    collections: {
+      [Media.slug]: true,
+    },
+    options: {
+      token: process.env.UPLOADTHING_TOKEN,
+      acl: 'public-read',
     },
   }),
   payloadCloudPlugin(),
