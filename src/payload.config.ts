@@ -1,6 +1,6 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
-import sharp from 'sharp' // sharp-import
+import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
