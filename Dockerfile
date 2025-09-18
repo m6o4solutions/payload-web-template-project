@@ -41,7 +41,7 @@ ENV NEXT_PUBLIC_SERVER_URL="http://placeholder.com"
 ENV CRON_SECRET="placeholder"
 ENV PREVIEW_SECRET="placeholder"
 
-# Build Next.js app
+# Build the Next.js app
 RUN corepack enable pnpm && pnpm run build
 
 # ----------------------
