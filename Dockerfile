@@ -31,7 +31,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Provide placeholder envs so Next.js doesn't crash during build
-ENV DATABASE_URI="placeholder"
+ENV DATABASE_URI="mongodb://m6o4solutions:PassWord8475@mongodb.m6o4solutions.com:27017/payload-web-sampleDb?authSource=admin"
 ENV PAYLOAD_SECRET="placeholder"
 ENV RESEND_API_KEY="placeholder"
 ENV RESEND_FROM_EMAIL="placeholder@email.com"
