@@ -1,7 +1,7 @@
 {
-  "name": "payload-web-sample-project",
+  "name": "payload-web-template-project",
   "version": "3.55.1",
-  "description": "The official Payload Website Sample.",
+  "description": "The official Payload Website Template.",
   "license": "MIT",
   "type": "module",
   "scripts": {
