@@ -42,7 +42,7 @@ ENV CRON_SECRET="placeholder"
 ENV PREVIEW_SECRET="placeholder"
 
 # Build the Next.js app
-RUN corepack enable pnpm && pnpm run build
+RUN corepack enable pnpm && pnpm build
 
 # ----------------------
 # 3. Production stage
